@@ -31,9 +31,14 @@ export async function action({ request, params }) {
   if (!response.ok) {
     throw json({ message: 'somthing went wrong' }, { status: 500 });
   } else {
-    // const resData = await response.json();
+    const resData = await response.json();
 
-    // return resData;
+    const token = resData.token;
+    localStorage.setItem('token', token);
+
+    const user = resData.user;
+    localStorage.setItem('user', user);
+
     return redirect('/');
   }
 }
